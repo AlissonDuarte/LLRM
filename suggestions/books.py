@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from math import sqrt
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.neighbors import NearestNeighbors
 
@@ -54,7 +55,7 @@ def tag_book_proccess(books:dict) -> dict:
     return books_relationships
         
 
-def books_by_user_history(user_books:dict) -> dict:
+def books_by_user_history(user_books:dict, k = random.randint(20, 33)) -> dict:
     """
     Generates book recommendations for users based on their historical book preferences and similarity to other users.
 
@@ -175,9 +176,8 @@ def books_by_friends(friends_books:dict, k = random.randint(20, 33)) -> dict:
     return recommendations
 
 
-
-from math import sqrt
-
+# recommendation part 2
+# These functions below will use few resources to create recommendations based on the rating that users give to books.
 
 def eucliedean(base, user1, user2):
     """
@@ -217,8 +217,7 @@ def eucliedean(base, user1, user2):
     )
     return 1/(1+sqrt(data_sum))
 
-# recommendation part 2
-# These functions below will use few resources to create recommendations based on the rating that users give to books.
+
 def get_similarity(base, user):
     """
     Calculates the similarity scores of items for a given user based on Euclidean distance.
